@@ -1,7 +1,12 @@
 $(document).ready(function() {
     console.log("working");
-        $('.num-button'').on('click', function() {
-            $('.display').attr
+        $('.num-button').on('click', function() {
+            var $pressedNumber = $(this).val();
+            $('.display').val($pressedNumber);
+            //Xappend value of button in display
+            //store value of each button. maybe by adding data method
+            //data attr could be 1st entry, 1st entry locked.  2nd entry, 2nd entry locked
+
         });
 
         $('.func-button').on('click', function() {
@@ -18,6 +23,7 @@ $(document).ready(function() {
 
         $('.clear-button').on('click', function() {
             ////execute function that clears the display.
+            ('.display').replaceWith('[placeholder]')
 
         });
 });
