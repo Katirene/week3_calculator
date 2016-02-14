@@ -45,14 +45,14 @@ $(document).ready(function() {
         var values = {};
         values = Number(firstValue.join(''));
         console.log('inside function:', values);
-            /*$.ajax({
+            $.ajax({
             type: 'POST',
             url: '/name',
             data: values,
             success: function (data) {
                 console.log('made the return trip with firstValue')
                 }
-            });*/
+            });
     }
 
 });
