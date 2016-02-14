@@ -1,9 +1,17 @@
 $(document).ready(function() {
     console.log("working");
         $('.num-button').on('click', function() {
+            if ($(this).data('id', 'clear')) {
+                $(this).data('id', 'first-unlocked');
+            }
+            console.log($(this).data());
+                var firstValue = parseInt($(this).val());
+                //Store parseInt to firstValue data attr
             var $pressedNumber = $(this).val();
             $('.display').val($pressedNumber);
             //Xappend value of button in display
+
+
             //store value of each button. maybe by adding data method
             //data attr could be 1st entry, 1st entry locked.  2nd entry, 2nd entry locked
 
