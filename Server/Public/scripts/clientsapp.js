@@ -6,7 +6,6 @@ $(document).ready(function() {
             $(this).data('id', 'first-unlocked');
         }
         firstValue.push($(this).val());
-        postFirstValue();
 
         var $pressedNumber = $(this).val();
         $('.display').val($pressedNumber);
@@ -24,12 +23,12 @@ $(document).ready(function() {
         ///the func-button is used for routing in the POST request
     });
 
-    $('.equal-button').on('click', function () {
+    $('.equal-button').on('click', postValues);
         ////locks the previously entered numbers as value two
         ///executes function that gets sent as an POST request. routed depending on func button
 
 
-    });
+
 
     $('.clear-button').on('click', function () {
         ////execute function that clears the display.
@@ -40,17 +39,21 @@ $(document).ready(function() {
 
 
 
-    function postFirstValue() {
+    function postValues() {
         event.preventDefault();
-        var values = {};
-        values = Number(firstValue.join(''));
-        console.log('inside function:', values);
+        var mergedfirstValue = {};
+        //var mergedsecondValue = {};
+        mergedfirstValue = (firstValue.join(''));
+        //mergedsecondValue = (secondValue.join(''));
+        console.log('inside function:', mergedfirstValue);
+        //console.log('inside function:', mergedsecondValue);
+
             $.ajax({
             type: 'POST',
-            url: '/name',
-            data: values,
+            url: '/addition',
+            data: {firstvalue: mergedfirstValue},
             success: function (data) {
-                console.log('made the return trip with firstValue')
+                console.log('made the return trip with addition')
                 }
             });
     }

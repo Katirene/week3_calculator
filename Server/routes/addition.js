@@ -4,7 +4,10 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 router.post('/', function(req, res) {
+    console.log(req.body);
    res.send("Addition Route sent");
 });
 
-module.export = router;
+module.exports = router;
+
+
