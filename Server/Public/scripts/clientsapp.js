@@ -1,20 +1,33 @@
 var firstValue = [];
 var secondValue = [];
+var mathProblem = '';
+
 $(document).ready(function() {
     console.log("working");
+
+    $('.num-button').on('click', function() {
+        if (mathProblem !== '' || $(this).val() !=='0') {
+            mathProblem += $(this).val();
+        }
+        console.log($(this).val());
+        console.log(mathProblem);
+    });
+
+
+
+
     $('.num-button').on('click', function () {
 
-        if ($('.display').data('id') == 'clear') {
-            $('.display').data('id', 'first-unlocked');
+        /*if ($('.display').data('id') === 'clear'
+         || $('.display').data('id') === 'firstunlocked') {
+            $('.display').data('id', 'firstunlocked');
             firstValue.push($(this).val());
-            console.log(firstValue);
-        }
-
-
-        else if ($('.display').data('id') == 'first-locked') {
-            secondValue.push($(this).val());
             console.log(secondValue);
         }
+        else {
+            secondValue.push($(this).val());
+            console.log(secondValue);
+        }*/
 
         var $pressedNumber = $(this).val();
         $('.display').val($pressedNumber);
@@ -27,15 +40,18 @@ $(document).ready(function() {
     });
 
     $('.func-button').on('click', function () {
-        if ($('.display').data('id', 'first-unlocked')) {
-            $('.display').data('id', 'first-locked');
-        }
+        mathProblem += $(this).val();
 
-        ///locks the first num-buttons clicked as value one.
+        //if ($('.display').data('id') === 'firstunlocked') {
+          //  $('.display').data('id', 'firstlocked');
+        //}
+
         ///the func-button is used for routing in the POST request
     });
 
     $('.equal-button').on('click', postValues);
+        //if bound event is addition, execute postValuesAddition
+
         ////locks the previously entered numbers as value two
         ///executes function that gets sent as an POST request. routed depending on func button
 
@@ -44,7 +60,10 @@ $(document).ready(function() {
 
     $('.clear-button').on('click', function () {
         ////execute function that clears the display.
-        ('.display').replaceWith('[placeholder]')
+        $('.display').val('');
+        firstValue = [];
+        secondValue = [];
+        console.log(firstValue, secondValue);
 
     });
 
