@@ -16,10 +16,14 @@ $(document).ready(function() {
         $('.display').val($pressedNumber);
 
 
-
     $('.func-button').on('click', function () {
-        mathProblem += $(this).val();
-        console.log(mathProblem);
+        if(mathProblem.includes('+', '-', 'x', '/')) {
+            $('.func-button').prop('disabled', true);
+        }
+        else {
+            mathProblem += $(this).val();
+            console.log(mathProblem);
+        }
     });
 
     $('.equal-button').on('click', function() {
