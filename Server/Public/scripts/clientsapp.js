@@ -26,22 +26,20 @@ $(document).ready(function() {
         if(mathProblem.includes('+')) {
             console.log("plus found.");
         }
+        else if(mathProblem.includes('-')) {
+            console.log("minus found.");
+        }
+        else if(mathProblem.includes('x')) {
+            console.log("multiply found.");
+        }
+        else if(mathProblem.includes('/')) {
+            console.log("divide found.");
+        }
     });
-        //if bound event is addition, execute postValuesAddition
-
-        ////locks the previously entered numbers as value two
-        ///executes function that gets sent as an POST request. routed depending on func button
-
-
 
 
     $('.clear-button').on('click', function () {
-        ////execute function that clears the display.
-        $('.display').val('');
-        firstValue = [];
-        secondValue = [];
-        console.log(firstValue, secondValue);
-
+      mathProblem = '';
     });
 
     function appendResult() {
