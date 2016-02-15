@@ -41,27 +41,32 @@ $(document).ready(function() {
         event.preventDefault();
         if(mathProblem.includes('+')) {
             url = '/addition';
+            mathProblem = encodeURIComponent(mathProblem);
         }
         else if(mathProblem.includes('-')) {
             url = '/subtraction';
+            mathProblem = encodeURIComponent(mathProblem);
         }
         else if(mathProblem.includes('x')) {
             url = '/multiplication';
+            mathProblem = encodeURIComponent(mathProblem);
         }
         else if(mathProblem.includes('/')) {
             url = '/division';
+            mathProblem = encodeURIComponent(mathProblem);
         }
-            $.ajax({
-            type: 'POST',
-            url: url,
-            data: mathProblem,
-            success: function (data) {
-                console.log('made the return trip with addition')
-                console.log(data);
-                //need append DOM function
 
-                }
-            });
+        $.ajax({
+        type: 'POST',
+        url: url,
+        data: mathProblem,
+        success: function (data) {
+            console.log('made the return trip with addition')
+            console.log(data);
+            //need append DOM function
+
+            }
+        });
     }
 
 });
