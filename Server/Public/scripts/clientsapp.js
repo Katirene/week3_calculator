@@ -4,6 +4,9 @@ var mathProblem = '';
 $(document).ready(function() {
     console.log("working");
 
+    var $pressedNumber = $(this).val();
+    $('.display').val($pressedNumber);
+
     $('.num-button').on('click', function() {
         if (mathProblem !== '' || $(this).val() !=='0') {
             mathProblem += $(this).val();
@@ -11,9 +14,6 @@ $(document).ready(function() {
         console.log($(this).val());
         console.log(mathProblem);
     });
-
-        var $pressedNumber = $(this).val();
-        $('.display').val($pressedNumber);
 
 
     $('.func-button').on('click', function () {
@@ -41,25 +41,25 @@ $(document).ready(function() {
         event.preventDefault();
         if(mathProblem.includes('+')) {
             url = '/addition';
-            mathProblem = encodeURIComponent(mathProblem);
+            //mathProblem = encodeURIComponent(mathProblem);
         }
         else if(mathProblem.includes('-')) {
             url = '/subtraction';
-            mathProblem = encodeURIComponent(mathProblem);
+            //mathProblem = encodeURIComponent(mathProblem);
         }
         else if(mathProblem.includes('x')) {
             url = '/multiplication';
-            mathProblem = encodeURIComponent(mathProblem);
+            //mathProblem = encodeURIComponent(mathProblem);
         }
         else if(mathProblem.includes('/')) {
             url = '/division';
-            mathProblem = encodeURIComponent(mathProblem);
+            //mathProblem = encodeURIComponent(mathProblem);
         }
 
         $.ajax({
         type: 'POST',
         url: url,
-        data: mathProblem,
+        data: {expression: mathProblem},
         success: function (data) {
             console.log('made the return trip with addition')
             console.log(data);
