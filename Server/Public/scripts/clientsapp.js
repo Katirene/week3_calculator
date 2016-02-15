@@ -1,15 +1,24 @@
 var firstValue = [];
+var secondValue = [];
 $(document).ready(function() {
     console.log("working");
     $('.num-button').on('click', function () {
-        if ($(this).data('id', 'clear')) {
-            $(this).data('id', 'first-unlocked');
+
+        if ($('.display').data('id') == 'clear') {
+            $('.display').data('id', 'first-unlocked');
+            firstValue.push($(this).val());
+            console.log(firstValue);
         }
-        firstValue.push($(this).val());
+
+
+        else if ($('.display').data('id') == 'first-locked') {
+            secondValue.push($(this).val());
+            console.log(secondValue);
+        }
 
         var $pressedNumber = $(this).val();
         $('.display').val($pressedNumber);
-        //Xappend value of button in display
+
 
 
         //store value of each button. maybe by adding data method
@@ -18,7 +27,10 @@ $(document).ready(function() {
     });
 
     $('.func-button').on('click', function () {
-        //if ()
+        if ($('.display').data('id', 'first-unlocked')) {
+            $('.display').data('id', 'first-locked');
+        }
+
         ///locks the first num-buttons clicked as value one.
         ///the func-button is used for routing in the POST request
     });
@@ -36,7 +48,9 @@ $(document).ready(function() {
 
     });
 
+    function appendResult() {
 
+    }
 
 
     function postValues() {
@@ -54,6 +68,9 @@ $(document).ready(function() {
             data: {firstvalue: mergedfirstValue},
             success: function (data) {
                 console.log('made the return trip with addition')
+                console.log(data);
+                //need append DOM function
+
                 }
             });
     }
