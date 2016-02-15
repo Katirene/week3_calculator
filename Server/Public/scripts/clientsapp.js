@@ -1,5 +1,4 @@
-var firstValue = [];
-var secondValue = [];
+
 var mathProblem = '';
 
 $(document).ready(function() {
@@ -13,43 +12,21 @@ $(document).ready(function() {
         console.log(mathProblem);
     });
 
-
-
-
-    $('.num-button').on('click', function () {
-
-        /*if ($('.display').data('id') === 'clear'
-         || $('.display').data('id') === 'firstunlocked') {
-            $('.display').data('id', 'firstunlocked');
-            firstValue.push($(this).val());
-            console.log(secondValue);
-        }
-        else {
-            secondValue.push($(this).val());
-            console.log(secondValue);
-        }*/
-
         var $pressedNumber = $(this).val();
         $('.display').val($pressedNumber);
 
 
 
-        //store value of each button. maybe by adding data method
-        //data attr could be 1st entry, 1st entry locked.  2nd entry, 2nd entry locked
-
-    });
-
     $('.func-button').on('click', function () {
         mathProblem += $(this).val();
-
-        //if ($('.display').data('id') === 'firstunlocked') {
-          //  $('.display').data('id', 'firstlocked');
-        //}
-
-        ///the func-button is used for routing in the POST request
+        console.log(mathProblem);
     });
 
-    $('.equal-button').on('click', postValues);
+    $('.equal-button').on('click', function() {
+        if(mathProblem.includes('+')) {
+            console.log("plus found.");
+        }
+    });
         //if bound event is addition, execute postValuesAddition
 
         ////locks the previously entered numbers as value two
