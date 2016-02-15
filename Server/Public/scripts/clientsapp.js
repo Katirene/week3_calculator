@@ -1,12 +1,13 @@
 var url = '';
 var mathProblem = '';
+var displayedNumber = '';
 
 $(document).ready(function() {
     console.log("working");
 
     $('.num-button').on('click', function() {
-        var $pressedNumber = $(this).val();
-        $('.display').val($pressedNumber);
+        displayedNumber += $(this).val();
+        $('.display').val(displayedNumber);
 
         if (mathProblem !== '' || $(this).val() !=='0') {
             mathProblem += $(this).val();
@@ -17,13 +18,18 @@ $(document).ready(function() {
 
 
     $('.func-button').on('click', function () {
+        displayedNumber += $(this).val();
+        $('.display').val(displayedNumber);
         mathProblem += $(this).val();
     });
 
     $('.equal-button').on('click', postValues)
 
     $('.clear-button').on('click', function () {
-      mathProblem = '';
+        $('.display').val('');
+        mathProblem = '';
+        displayedNumber = '';
+
     });
 
     function appendResult(result) {
