@@ -6,7 +6,8 @@ var math = require('mathjs');
 
 router.post('/', function(req, res) {
     console.log(req.body);
-    res.send(math.eval(req.body.expression));
+    req.body.result = (math.eval(req.body.expression));
+    res.send(req.body);
 
 });
 

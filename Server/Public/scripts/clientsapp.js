@@ -4,10 +4,10 @@ var mathProblem = '';
 $(document).ready(function() {
     console.log("working");
 
-    var $pressedNumber = $(this).val();
-    $('.display').val($pressedNumber);
-
     $('.num-button').on('click', function() {
+        var $pressedNumber = $(this).val();
+        $('.display').val($pressedNumber);
+
         if (mathProblem !== '' || $(this).val() !=='0') {
             mathProblem += $(this).val();
         }
@@ -17,13 +17,7 @@ $(document).ready(function() {
 
 
     $('.func-button').on('click', function () {
-        if(mathProblem.includes('+', '-', 'x', '/')) {
-            $('.func-button').prop('disabled', true);
-        }
-        else {
-            mathProblem += $(this).val();
-            console.log(mathProblem);
-        }
+        mathProblem += $(this).val();
     });
 
     $('.equal-button').on('click', postValues)
@@ -32,40 +26,26 @@ $(document).ready(function() {
       mathProblem = '';
     });
 
-    function appendResult() {
-
+    function appendResult(result) {
+      $('.display').val(result);
     }
 
 
     function postValues() {
         event.preventDefault();
-        if(mathProblem.includes('+')) {
-            url = '/addition';
-            //mathProblem = encodeURIComponent(mathProblem);
-        }
-        else if(mathProblem.includes('-')) {
-            url = '/subtraction';
-            //mathProblem = encodeURIComponent(mathProblem);
-        }
-        else if(mathProblem.includes('x')) {
-            url = '/multiplication';
-            //mathProblem = encodeURIComponent(mathProblem);
-        }
-        else if(mathProblem.includes('/')) {
-            url = '/division';
-            //mathProblem = encodeURIComponent(mathProblem);
-        }
 
         $.ajax({
         type: 'POST',
-        url: url,
+        url: '/calc',
         data: {expression: mathProblem},
         success: function (data) {
-            console.log('made the return trip with addition')
-            console.log(data);
-            //need append DOM function
+            console.log(data.result);
+             appendResult(data.result);
 
             }
+        //error: function() {
+
+        //}
         });
     }
 
